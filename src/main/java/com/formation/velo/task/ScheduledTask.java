@@ -17,7 +17,6 @@ public class ScheduledTask {
 
     @Scheduled(fixedRate = 60000) //1min
     public void searchNextMatchByCompetition(){
-        log.info("update stations");
         stationService.saveRecord();
     }
 

@@ -62,7 +62,6 @@ public class StationServiceImpl implements StationService {
         Call<OpenData> openDataVeloNantesCall = client.getRecords();
         try {
             OpenData openData = openDataVeloNantesCall.execute().body();
-            log.info(openData.toString());
 
             Arrays.stream(openData.getRecords()).forEach(record -> {
                 Optional<Station> station = findByRecordId(record.getRecordId());
