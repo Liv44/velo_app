@@ -1,8 +1,10 @@
 package com.formation.velo;
 
 import com.formation.velo.controllers.UserController;
+import com.formation.velo.model.Pool;
 import com.formation.velo.model.Station;
 import com.formation.velo.model.User;
+import com.formation.velo.service.PoolService;
 import com.formation.velo.service.StationService;
 import com.formation.velo.service.UserService;
 import org.hamcrest.Matchers;
@@ -46,6 +48,9 @@ public class VeloApplicationTI {
 
     @Autowired
     private StationService stationService;
+
+    @Autowired
+    private PoolService poolService;
 
     private MockMvc mockMvc;
 
@@ -182,6 +187,17 @@ public class VeloApplicationTI {
         Optional<Station> optionalStation = stationService.findByRecordId("id");
         assertNotNull(optionalStation);
         assertEquals("test station", optionalStation.get().getName());
+
+    }
+
+    @Test
+    public void save_get_pool_return_station_success(){
+        Pool pool = Pool.builder().nomComplet("test station").build();
+        poolService.save(pool);
+
+        Optional<Pool> optionalPool = poolService.findByRecordId("id");
+        assertNotNull(optionalPool);
+        assertEquals("test station", optionalPool.get().getNomComplet());
 
     }
 

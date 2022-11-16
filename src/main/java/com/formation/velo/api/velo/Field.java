@@ -18,4 +18,5 @@ public class Field {
     private String name;
     @SerializedName("available_bikes")
     private int availableBikes;
+
 }
